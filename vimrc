@@ -68,5 +68,7 @@ runtime! lib/functions.vim
 runtime! lib/autocommands.vim
 runtime! lib/watchforchanges.vim
 
+silent! source ~/.vim/vimrc-ergin
+
 silent! source ~/.vimrc.local
 
