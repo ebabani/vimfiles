@@ -1,0 +1,29 @@
+
+let g:jsx_ext_required = 0
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.js,*.jsx"
+
+".vimrc
+map <c-f> :call JsBeautify()<cr>
+" or
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsxBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" for jsx
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+autocmd BufRead,BufWrite *js :call JsxBeautify()
+
+map <c-x> :call RangeHtmlBeautify()<cr>
+
+function GitAnnotate()
+  let line = line(".")
+  let summary = system("git annotate -L" . line . "," . line . " -p " . expand("%") . " | grep ^summary")
+  let summary = system("git annotate -L" . line . "," . line . " -p " . expand("%") . " | grep ^summary")
+  echom summary
+endfunction
+
+map ?? :call GitAnnotate()<cr>
